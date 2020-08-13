@@ -15,6 +15,7 @@ window.addEventListener('documentLoaded', () => {
 });
 
 function receiveMessage(event) {
+  debugger;
   if (event.isTrusted && typeof event.data === 'object' && event.origin === 'http://localhost:3000') {
     switch (event.data.type) {
       case 'OPEN_DOCUMENT_URL':
