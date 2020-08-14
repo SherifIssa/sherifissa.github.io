@@ -18,7 +18,6 @@ window.addEventListener('documentLoaded', () => {
 
 function receiveMessage(event) {
   console.log("===>>>>>FROM receiveMessage...");
-  /*
   fetch("https://ltgcrazyhorse.com/prweb?pyActivity=GetBase64Attachment&DocumentId=PEGASOCIAL-DOCUMENT%20DOC-4001&filename=GMTchoicePlan.pdf", {credentials: "same-origin"})
   .then(response => {
     debugger;
@@ -27,7 +26,6 @@ function receiveMessage(event) {
     debugger;
     console.log(err);
   })
-  */
 
   debugger;
   if (event.isTrusted && typeof event.data === 'object') {
