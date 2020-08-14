@@ -17,7 +17,7 @@ window.addEventListener('documentLoaded', () => {
 function receiveMessage(event) {
   console.log("===>>>>>FROM CONFIG FILE...")
   debugger;
-  if (event.isTrusted && typeof event.data === 'object' && event.origin === 'http://localhost:3000') {
+  if (event.isTrusted && typeof event.data === 'object') {
     switch (event.data.type) {
       case 'OPEN_DOCUMENT_URL':
         const { url } = event.data;
