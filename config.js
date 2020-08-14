@@ -1,5 +1,15 @@
 console.log("===>>>>>FROM CONFIG FILE...");
 
+console.log("===>>>>>FROM CONFIG FILE...");
+  fetch("https://ltgcrazyhorse.com/prweb/app/PptDemo_/PCw9-U9dHLAcmvh5C14NsVjYB4AJ6kUB*/!TABTHREAD1?pyActivity=GetBase64Attachment&DocumentId=PEGASOCIAL-DOCUMENT%20DOC-4001&filename=GMTchoicePlan.pdf", {credentials: "same-origin"})
+  .then(response => {
+    debugger;
+    console.log(response);
+  }).catch(err => {
+    debugger;
+    console.log(err);
+  })
+  
 window.addEventListener('viewerLoaded', function () {
   console.log('Viewer Loaded');
 });
