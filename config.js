@@ -1,5 +1,18 @@
 console.log("===>>>>>FROM CONFIG FILE...");
 
+
+function base64ToBlob(base64) {
+  const binaryString = window.atob(base64);
+  const len = binaryString.length;
+  const bytes = new Uint8Array(len);
+  for (let i = 0; i < len; ++i) {
+    bytes[i] = binaryString.charCodeAt(i);
+  }
+
+  return new Blob([bytes], { type: 'application/pdf' });
+};
+
+
 window.addEventListener('viewerLoaded', function () {
   console.log('Viewer Loaded');
 });
@@ -18,6 +31,7 @@ window.addEventListener('documentLoaded', () => {
 
 function receiveMessage(event) {
   console.log("===>>>>>FROM receiveMessage...");
+  /*
   fetch("https://ltgcrazyhorse.com/prweb?pyActivity=GetBase64Attachment&DocumentId=PEGASOCIAL-DOCUMENT%20DOC-4001&filename=GMTchoicePlan.pdf", {
     credentials: "include",
     mode: 'no-cors',
@@ -28,9 +42,12 @@ function receiveMessage(event) {
     debugger;
     console.log(err);
   })
+  */
 
-  debugger;
   if (event.isTrusted && typeof event.data === 'object') {
+    const data =event.target.readerControl.getCustomData();
+    debugger;
+
     switch (event.data.type) {
       case 'OPEN_DOCUMENT_URL':
         const { url } = event.data;
