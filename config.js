@@ -50,7 +50,7 @@ function receiveMessage(event) {
     switch (event.data.type) {
       case 'OPEN_DOCUMENT_URL':
         const { url } = event.data;
-        const data = event.target.readerControl.getCustomData();
+        const data = decodeURIComponent(event.target.readerControl.getCustomData());
         debugger;
 
         /* event.target.readerControl.loadDocument(url); */
