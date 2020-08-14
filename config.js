@@ -55,7 +55,7 @@ function receiveMessage(event) {
 
         /* event.target.readerControl.loadDocument(url); */
 
-        event.target.readerControl.loadDocument( base64ToBlob(myBase64String), { filename: 'myfile.pdf' } );
+        event.target.readerControl.loadDocument( base64ToBlob(data), { filename: 'myfile.pdf' } );
         break;
       case 'CLOSE_DOCUMENT':
         event.target.readerControl.closeDocument();
