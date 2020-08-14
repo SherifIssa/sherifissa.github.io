@@ -1,3 +1,5 @@
+console.log("===>>>>>FROM CONFIG FILE...");
+
 window.addEventListener('viewerLoaded', function () {
   console.log('Viewer Loaded');
 });
@@ -15,7 +17,7 @@ window.addEventListener('documentLoaded', () => {
 });
 
 function receiveMessage(event) {
-  console.log("===>>>>>FROM CONFIG FILE...")
+  console.log("===>>>>>FROM receiveMessage...");
   debugger;
   if (event.isTrusted && typeof event.data === 'object') {
     switch (event.data.type) {
