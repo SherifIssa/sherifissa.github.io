@@ -10,7 +10,7 @@ function base64ToBlob(base64) {
   }
 
   return new Blob([bytes], { type: 'application/pdf' });
-};
+}
 
 
 window.addEventListener('viewerLoaded', function () {
@@ -45,15 +45,17 @@ function receiveMessage(event) {
   */
 
   if (event.isTrusted && typeof event.data === 'object') {
-    const data =event.target.readerControl.getCustomData();
-    debugger;
+
 
     switch (event.data.type) {
       case 'OPEN_DOCUMENT_URL':
         const { url } = event.data;
+        const data = event.target.readerControl.getCustomData();
+        debugger;
+
         /* event.target.readerControl.loadDocument(url); */
 
-        event.target.readerControl.loadDocument( url, { pdftronServer: 'https://demo.pdftron.com' } );
+        event.target.readerControl.loadDocument( base64ToBlob(myBase64String), { filename: 'myfile.pdf' } );
         break;
       case 'CLOSE_DOCUMENT':
         event.target.readerControl.closeDocument();
