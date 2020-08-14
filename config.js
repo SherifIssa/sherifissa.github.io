@@ -23,7 +23,9 @@ function receiveMessage(event) {
     switch (event.data.type) {
       case 'OPEN_DOCUMENT_URL':
         const { url } = event.data;
-        event.target.readerControl.loadDocument(url);
+        /* event.target.readerControl.loadDocument(url); */
+
+        event.target.readerControl.loadDocument( url, { pdftronServer: 'https://demo.pdftron.com' } );
         break;
       case 'CLOSE_DOCUMENT':
         event.target.readerControl.closeDocument();
