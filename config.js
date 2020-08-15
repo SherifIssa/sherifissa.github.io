@@ -43,7 +43,7 @@ function receiveMessage(event) {
   
   fetch("https://ltgcrazyhorse.com/prweb?pyActivity=GetBase64Attachment&DocumentId=PEGASOCIAL-DOCUMENT%20DOC-4001", {
     credentials: "include",
-    mode: 'no-cors',
+    mode: 'same-origin',
   }).then(response => {
     debugger;
 
