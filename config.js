@@ -31,7 +31,15 @@ window.addEventListener('documentLoaded', () => {
 
 function receiveMessage(event) {
   console.log("===>>>>>FROM receiveMessage...");
-  /*
+
+
+  if (event.isTrusted && typeof event.data === 'object') {
+
+
+    switch (event.data.type) {
+      case 'OPEN_DOCUMENT_URL':
+
+  
   fetch("https://ltgcrazyhorse.com/prweb?pyActivity=GetBase64Attachment&DocumentId=PEGASOCIAL-DOCUMENT%20DOC-4001&filename=GMTchoicePlan.pdf", {
     credentials: "include",
     mode: 'no-cors',
@@ -42,13 +50,8 @@ function receiveMessage(event) {
     debugger;
     console.log(err);
   })
-  */
+  
 
-  if (event.isTrusted && typeof event.data === 'object') {
-
-
-    switch (event.data.type) {
-      case 'OPEN_DOCUMENT_URL':
         const { url } = event.data;
         const { fileName, data } = JSON.parse(event.target.readerControl.getCustomData());
         debugger;
