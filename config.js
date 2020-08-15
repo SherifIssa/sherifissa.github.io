@@ -40,6 +40,7 @@ function receiveMessage(event) {
       case 'OPEN_DOCUMENT_URL':
 
   debugger
+  /*
   fetch("https://ltgcrazyhorse.com/prweb?pyActivity=GetBase64Attachment&DocumentId=PEGASOCIAL-DOCUMENT%20DOC-4001&filename=GMTchoicePlan.pdf", {
     credentials: "include",
     mode: 'no-cors',
@@ -50,6 +51,7 @@ function receiveMessage(event) {
     debugger;
     console.log(err);
   })
+  */
   
 
         const { url } = event.data;
