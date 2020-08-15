@@ -41,17 +41,12 @@ function receiveMessage(event) {
 
   debugger
   
-  fetch("https://ltgcrazyhorse.com/prweb?pyActivity=GetBase64Attachment&DocumentId=PEGASOCIAL-DOCUMENT%20DOC-4001&filename=GMTchoicePlan.pdf", {
+  fetch("https://ltgcrazyhorse.com/prweb?pyActivity=GetBase64Attachment&DocumentId=PEGASOCIAL-DOCUMENT%20DOC-4001", {
     credentials: "include",
     mode: 'no-cors',
   }).then(response => {
     debugger;
 
-    response.text()
-    .then(txt =>{
-        debugger;
-        console.log(txt);
-    });
 
   }).catch(err => {
     debugger;
