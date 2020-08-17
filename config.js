@@ -21,8 +21,7 @@ window.addEventListener('documentLoaded', () => {
   const annotManager = docViewer.getAnnotationManager();
   debugger;
 
-  annotManager.on("annotationChanged", (annotations, action) => {
-        debugger;
+  annotManager.on("ANNOTATION_CHANGED", (annotations, action) => {
         window.parent.postMessage({
             type: "ANNOTATION_CHANGED"
           }
