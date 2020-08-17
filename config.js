@@ -67,6 +67,8 @@ window.addEventListener('documentLoaded', () => {
       annotManager.importAnnotations(annotations)
       .then(imported => {
         debugger;
+        readerControl && readerControl.openElements([ 'rightPanel' ]);
+
         importMode = false;
         docViewer.refreshAll();
         annotManager.drawAnnotations(docViewer.getCurrentPage());        
