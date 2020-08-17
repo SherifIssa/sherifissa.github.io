@@ -54,15 +54,17 @@ function receiveMessage(event) {
         const { annotations } = event.data;
         debugger;
         console.log(">>>docViewer=" + docViewer);
-        importMode = true; 
-        docViewer.getAnnotationManager().importAnnotations(annotations)
-        .then(imported => {
-          debugger;
-          importMode = false;          
-        }).catch (err => {
-          console.log(err);
-          debugger;
-        });
+        setTimeout(() => {
+          importMode = true; 
+          docViewer.getAnnotationManager().importAnnotations(annotations)
+          .then(imported => {
+            debugger;
+            importMode = false;          
+          }).catch (err => {
+            console.log(err);
+            debugger;
+          });
+        }, 500);
         break;
       case 'CLOSE_DOCUMENT':
         event.target.readerControl.closeDocument();
