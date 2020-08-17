@@ -75,18 +75,6 @@ function receiveMessage(event) {
         /* event.target.readerControl.loadDocument(url); */
 
         event.target.readerControl.loadDocument( base64ToBlob(data), { filename: 'myfile.pdf' } );
-        const annotManager = docViewer.getAnnotationManager();
-        debugger;
-
-        annotManager.on("annotationChanged", (annotations, action) => {
-              window.parent.postMessage({
-                  type: "ANNOTATION_CHANGED"
-                }
-                , '*'
-              );
-              debugger                                        
-            });
-              
         break;
       case 'CLOSE_DOCUMENT':
         event.target.readerControl.closeDocument();
