@@ -3,6 +3,7 @@ console.log("===>>>>>FROM CONFIG FILE...");
 let currentUser;
 let annotManager;
 let importMode = false;
+let annotations;
 
 function base64ToBlob(base64) {
   const binaryString = window.atob(base64);
@@ -22,25 +23,33 @@ window.addEventListener('viewerLoaded', function () {
 window.addEventListener('documentLoaded', () => {
   annotManager = docViewer.getAnnotationManager();
   annotManager.setCurrentUser(currentUser);
-
-  annotManager.on("annotationChanged", (annotations, action) => {
-    if (!annotations || annotations.length == 0) return;
+  docViewer.getAnnotationManager().importAnnotations(annotations)
+  .then(imported => {
     debugger;
-    const author = annotations[0].Author;
-    if (annotations[0].Author === currentUser && !importMode) {
-      annotManager.exportAnnotCommand()
-      .then(xfdfStringCmd => {  
-          window.parent.postMessage({
-              type: "ANNOTATION_CHANGED",
-              author,
-              data: xfdfStringCmd
-            }
-            , '*'
-          );
-      });
-    }
+    annotManager.on("annotationChanged", (annotations, action) => {
+      if (!annotations || annotations.length == 0) return;
+      debugger;
+      const author = annotations[0].Author;
+      if (annotations[0].Author === currentUser && !importMode) {
+        annotManager.exportAnnotCommand()
+        .then(xfdfStringCmd => {  
+            window.parent.postMessage({
+                type: "ANNOTATION_CHANGED",
+                author,
+                data: xfdfStringCmd
+              }
+              , '*'
+            );
+        });
+      }
+    });
+
+        
+  }).catch (err => {
+    console.log(err);
+    debugger;
+
   });
-});
 
 function receiveMessage(event) {
   if (event.isTrusted && typeof event.data === 'object') {
@@ -48,6 +57,7 @@ function receiveMessage(event) {
       case 'OPEN_DOCUMENT':
         const { fileName, data, author } = JSON.parse(event.target.readerControl.getCustomData());
         currentUser = author;
+        annotations = event.data;
         event.target.readerControl.loadDocument( base64ToBlob(data), { filename: fileName } );
         break;
       case 'LOAD_ANNOTATIONS':
