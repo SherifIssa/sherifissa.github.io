@@ -28,8 +28,7 @@ window.addEventListener('documentLoaded', () => {
     debugger;
     const author = annotations[0].Author;
     if (annotations[0].Author === currentUser) {
-      console.log(">>>>" + readerControl);
-      readerControl && readerControl.openElements([ 'leftPanel' ]);
+      readerControl.openElements([ 'leftPanel' ]);
       
       annotManager.exportAnnotCommand()
       .then(xfdfStringCmd => {  
@@ -67,8 +66,7 @@ window.addEventListener('documentLoaded', () => {
       annotManager.importAnnotations(annotations)
       .then(imported => {
         debugger;
-        readerControl && readerControl.openElements([ 'rightPanel' ]);
-
+        readerControl.openElements([ 'rightPanel' ]);
         importMode = false;
         docViewer.refreshAll();
         annotManager.drawAnnotations(docViewer.getCurrentPage());        
