@@ -27,7 +27,7 @@ window.addEventListener('documentLoaded', () => {
   .then(imported => {
     debugger;
     annotManager.on("annotationChanged", (annotations, action) => {
-      if (!annotations || annotations.length == 0) return;
+      if (!annotations || annotations.length === 0) return;
       debugger;
       const author = annotations[0].Author;
       if (annotations[0].Author === currentUser && !importMode) {
@@ -50,6 +50,7 @@ window.addEventListener('documentLoaded', () => {
     debugger;
 
   });
+});
 
 function receiveMessage(event) {
   if (event.isTrusted && typeof event.data === 'object') {
