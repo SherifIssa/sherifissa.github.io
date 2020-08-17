@@ -41,14 +41,16 @@ window.addEventListener('documentLoaded', () => {
     }
   });
   
-  debugger;
-  annotManager.importAnnotations(annotations)
-  .then(imported => {
-    debugger;        
-  }).catch (err => {
-    console.log(err);
-    debugger;
-  });
+  setTimeout(() => {
+      debugger;
+      annotManager.importAnnotations(annotations)
+      .then(imported => {
+        debugger;        
+      }).catch (err => {
+        console.log(err);
+        debugger;
+      });
+    }, 100);
 });
 
 function receiveMessage(event) {
