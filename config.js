@@ -91,6 +91,17 @@ function receiveMessage(event) {
         break;
       case 'ADD_ANNOTATIONS':
         debugger;
+        const data = event.data.annotations;
+        console.log(data);
+        importMode = true; 
+        annotManager.importAnnotCommand(data)
+        .then(importedAnnotations => {
+          readerControl.openElements([ 'notesPanel' ]);
+          readerControl.docViewer.refreshAll();
+          annotManager.drawAnnotations(docViewer.getCurrentPage());
+          importMode = false;        
+        });
+
         break;
       case 'CLOSE_DOCUMENT':
         event.target.readerControl.closeDocument();
