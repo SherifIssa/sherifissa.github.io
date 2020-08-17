@@ -20,6 +20,11 @@ window.addEventListener('viewerLoaded', function () {
   console.log('Viewer Loaded');
 });
 
+window.addEventListener('message', function () {
+  console.log('>>>>>IMPLEMENT ADD_ANNOTATIONS');
+  debugger;
+});
+
 window.addEventListener('documentLoaded', () => {
   annotManager = docViewer.getAnnotationManager();
   annotManager.setCurrentUser(currentUser);
@@ -88,7 +93,7 @@ function receiveMessage(event) {
         annotations = event.data.annotations;
         event.target.readerControl.loadDocument( base64ToBlob(data), { filename: fileName } );
         break;
-      case 'LOAD_ANNOTATIONS':
+      case 'ADD_ANNOTATIONS':
        
         break;
       case 'CLOSE_DOCUMENT':
