@@ -56,7 +56,7 @@ function receiveMessage(event) {
         console.log(">>>docViewer=" + docViewer);
         setTimeout(() => {
           importMode = true; 
-          docViewer.getAnnotationManager().importAnnotations(annotations)
+          annotManager.importAnnotations(annotations)
           .then(imported => {
             debugger;
             importMode = false;          
