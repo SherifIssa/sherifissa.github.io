@@ -21,10 +21,10 @@ window.addEventListener('documentLoaded', () => {
   const annotManager = docViewer.getAnnotationManager();
 
   annotManager.on("annotationChanged", (annotations, action) => {
-        window.postMessage({
+        window.parent.postMessage({
             type: "ANNOTATION_CHANGED"
           }
-          , window.parent
+          , '*'
         );
         debugger                                        
       });
