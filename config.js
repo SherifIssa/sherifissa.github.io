@@ -20,12 +20,14 @@ window.addEventListener('viewerLoaded', function () {
 window.addEventListener('documentLoaded', () => {
   const annotManager = docViewer.getAnnotationManager();
   annotManager.setCurrentUser(currentUser);
-  annotManager.exportAnnotCommand()
-  .then(xfdfStringCmd => {
-    annotManager.on("annotationChanged", (annotations, action) => {
-          if (!annotations || annotations.length == 0) return;
-          const author = annotations[0].Author;
 
+  annotManager.on("annotationChanged", (annotations, action) => {
+    if (!annotations || annotations.length == 0) return;
+
+    const author = annotations[0].Author;
+    if (annotations[0].Author === currentUser)
+      annotManager.exportAnnotCommand()
+      .then(xfdfStringCmd => {  
           window.parent.postMessage({
               type: "ANNOTATION_CHANGED",
               author,
@@ -34,6 +36,7 @@ window.addEventListener('documentLoaded', () => {
             , '*'
           );
         });
+    }
   });
 
   const rectangle = new Annotations.RectangleAnnotation();
@@ -54,7 +57,7 @@ function receiveMessage(event) {
         currentUser = author;
         debugger;
         console.log(">>>" + event.target.readerControl.annotManager);
-        
+
         event.target.readerControl.loadDocument( base64ToBlob(data), { filename: fileName } );
         break;
       case 'CLOSE_DOCUMENT':
