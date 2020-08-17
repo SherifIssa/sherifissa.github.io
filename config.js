@@ -53,7 +53,7 @@ function receiveMessage(event) {
       case 'LOAD_ANNOTATIONS':
         const { annotations } = event.data;
         debugger;
-        console.log(">>>>>docViewer=" + docViewer);
+        console.log(">>>docViewer=" + docViewer);
         importMode = true; 
         docViewer.getAnnotationManager().importAnnotations(annotations)
         .then(imported => {
