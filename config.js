@@ -45,7 +45,9 @@ window.addEventListener('documentLoaded', () => {
       debugger;
       annotManager.importAnnotations(annotations)
       .then(imported => {
-        debugger;        
+        debugger;
+        docViewer.refreshAll();
+        annotManager.drawAnnotations(docViewer.getCurrentPage());        
       }).catch (err => {
         console.log(err);
         debugger;
