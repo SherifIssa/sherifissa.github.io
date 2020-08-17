@@ -28,6 +28,9 @@ window.addEventListener('documentLoaded', () => {
     debugger;
     const author = annotations[0].Author;
     if (annotations[0].Author === currentUser) {
+      console.log(">>>>" + readerControl);
+      readerControl && readerControl.openElements([ 'leftPanel' ]);
+      
       annotManager.exportAnnotCommand()
       .then(xfdfStringCmd => {  
         window.parent.postMessage({
