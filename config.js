@@ -25,7 +25,8 @@ window.addEventListener('documentLoaded', () => {
   .then(xfdfStringCmd => {
     annotManager.on("annotationChanged", (annotations, action) => {
           window.parent.postMessage({
-              type: "ANNOTATION_CHANGED"
+              type: "ANNOTATION_CHANGED",
+              data: xfdfStringCmd
             }
             , '*'
           );
