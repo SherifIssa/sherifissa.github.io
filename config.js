@@ -91,10 +91,9 @@ function receiveMessage(event) {
         break;
       case 'ADD_ANNOTATIONS':
         debugger;
-        const data = event.data.annotations;
-        console.log(data);
+        console.log(event.data.annotations);
         importMode = true; 
-        annotManager.importAnnotCommand(data)
+        annotManager.importAnnotCommand(event.data.annotations)
         .then(importedAnnotations => {
           readerControl.openElements([ 'notesPanel' ]);
           readerControl.docViewer.refreshAll();
