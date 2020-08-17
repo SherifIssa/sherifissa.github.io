@@ -46,14 +46,14 @@ function receiveMessage(event) {
       case 'OPEN_DOCUMENT_URL':
         const { fileName, data } = JSON.parse(event.target.readerControl.getCustomData());
         debugger;
-        event.target.readerControl.loadDocument( base64ToBlob(data), { filename } );
+        event.target.readerControl.loadDocument( base64ToBlob(data), { filename: fileName } );
         break;
       case 'CLOSE_DOCUMENT':
         event.target.readerControl.closeDocument();
         break;
       case 'ANNOTATION_PUBLISHED':
         debugger;
-        console.log(event);
+        console.log(event.data);
         break;        
       default:
         break;
