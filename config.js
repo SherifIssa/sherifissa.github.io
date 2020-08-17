@@ -48,12 +48,14 @@ function receiveMessage(event) {
         const { fileName, data, author } = JSON.parse(event.target.readerControl.getCustomData());
         currentUser = author;
         const { annotations } = event.data;
-        debugger;
-        console.log(">>>" + event.target.readerControl.annotManager);
-
         event.target.readerControl.loadDocument( base64ToBlob(data), { filename: fileName } );
         break;
-      
+      case 'LOAD_ANNOTATIONS':
+        const { annotations } = event.data;
+        debugger;
+        console.log(">>>annotManager=" + event.target.readerControl.annotManager);
+        console.log(">>>docViewer=" + docViewer);
+        break;
       case 'CLOSE_DOCUMENT':
         event.target.readerControl.closeDocument();
         break;
