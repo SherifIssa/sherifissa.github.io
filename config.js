@@ -21,8 +21,12 @@ window.addEventListener('documentLoaded', () => {
   annotManager.exportAnnotCommand()
   .then(xfdfStringCmd => {
     annotManager.on("annotationChanged", (annotations, action) => {
+          if (!annotations || annotations.length == 0) return;
+          const author = annotations[0].Author;
+
           window.parent.postMessage({
               type: "ANNOTATION_CHANGED",
+              author,
               data: xfdfStringCmd
             }
             , '*'
