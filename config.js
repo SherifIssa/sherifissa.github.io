@@ -31,24 +31,40 @@ window.addEventListener('documentLoaded', () => {
       annotManager.exportAnnotCommand()
       .then(xfdfStringCmd => {  
           window.parent.postMessage({
-              type: "ANNOTATION_CHANGED",
+              type: "PUBLISH_ANNOTATION",
               author,
               data: xfdfStringCmd
             }
             , '*'
           );
       });
+
+      annotManager.exportAnnotations({ links: false, widgets: false })
+      .then(xfdfStringCmd => {  
+          window.parent.postMessage({
+              type: "SAVE_ANNOTATION",
+              author,
+              data: xfdfStringCmd
+            }
+            , '*'
+          );
+      });      
     }
+
+
   });
   
   setTimeout(() => {
       debugger;
+      importMode = true;
       annotManager.importAnnotations(annotations)
       .then(imported => {
         debugger;
+        importMode = false;
         docViewer.refreshAll();
         annotManager.drawAnnotations(docViewer.getCurrentPage());        
       }).catch (err => {
+        importMode = false;        
         console.log(err);
         debugger;
       });
