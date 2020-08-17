@@ -68,8 +68,8 @@ window.addEventListener('documentLoaded', () => {
         debugger;
         readerControl.openElements([ 'rightPanel' ]);
         importMode = false;
-        docViewer.refreshAll();
-        annotManager.drawAnnotations(docViewer.getCurrentPage());        
+        //docViewer.refreshAll();
+        //annotManager.drawAnnotations(docViewer.getCurrentPage());        
       }).catch (err => {
         importMode = false;        
         console.log(err);
