@@ -23,7 +23,7 @@ window.addEventListener('documentLoaded', () => {
 
   annotManager.on("annotationChanged", (annotations, action) => {
     if (!annotations || annotations.length == 0) return;
-
+    debugger;
     const author = annotations[0].Author;
     if (annotations[0].Author === currentUser) {
       annotManager.exportAnnotCommand()
