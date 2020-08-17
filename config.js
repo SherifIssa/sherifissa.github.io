@@ -2,6 +2,7 @@ console.log("===>>>>>FROM CONFIG FILE...");
 
 let currentUser;
 let annotManager;
+let importMode = false;
 
 function base64ToBlob(base64) {
   const binaryString = window.atob(base64);
@@ -26,7 +27,7 @@ window.addEventListener('documentLoaded', () => {
     if (!annotations || annotations.length == 0) return;
     debugger;
     const author = annotations[0].Author;
-    if (annotations[0].Author === currentUser) {
+    if (annotations[0].Author === currentUser && !importMode) {
       annotManager.exportAnnotCommand()
       .then(xfdfStringCmd => {  
           window.parent.postMessage({
@@ -52,8 +53,13 @@ function receiveMessage(event) {
       case 'LOAD_ANNOTATIONS':
         const { annotations } = event.data;
         debugger;
-        console.log(">>>annotManager=" + event.target.readerControl.annotManager);
         console.log(">>>docViewer=" + docViewer);
+        importMode = true; 
+        getAnnotationManager().importAnnotations(annotations)
+        .then(imported => {
+          debugger;
+          importMode = false;          
+        });  
         break;
       case 'CLOSE_DOCUMENT':
         event.target.readerControl.closeDocument();
