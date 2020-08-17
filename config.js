@@ -61,20 +61,7 @@ function receiveMessage(event) {
         event.target.readerControl.loadDocument( base64ToBlob(data), { filename: fileName } );
         break;
       case 'LOAD_ANNOTATIONS':
-        const { annotations } = event.data;
-        debugger;
-        console.log(">>>docViewer=" + docViewer);
-        setTimeout(() => {
-          importMode = true; 
-          docViewer.getAnnotationManager().importAnnotations(annotations)
-          .then(imported => {
-            debugger;
-            importMode = false;          
-          }).catch (err => {
-            console.log(err);
-            debugger;
-          });
-        }, 500);
+       
         break;
       case 'CLOSE_DOCUMENT':
         event.target.readerControl.closeDocument();
