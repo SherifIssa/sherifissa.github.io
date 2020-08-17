@@ -19,6 +19,17 @@ window.addEventListener('viewerLoaded', function () {
 
 window.addEventListener('documentLoaded', () => {
   const annotManager = docViewer.getAnnotationManager();
+
+  annotManager.on("annotationChanged", (annotations, action) => {
+        window.postMessage({
+            type: "ANNOTATION_CHANGED"
+          }
+          , window.parent
+        );
+        debugger                                        
+      });
+
+
   const rectangle = new Annotations.RectangleAnnotation();
   rectangle.PageNumber = 2;
   rectangle.X = 100;
