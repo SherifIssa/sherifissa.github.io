@@ -24,10 +24,10 @@ window.addEventListener('documentLoaded', () => {
   annotManager = docViewer.getAnnotationManager();
   annotManager.setCurrentUser(currentUser);
   annotManager.on("annotationChanged", (annotations, action) => {
-    if (!annotations || annotations.length === 0) return;
+    if (importMode || !annotations || annotations.length === 0) return;
     debugger;
     const author = annotations[0].Author;
-    if (annotations[0].Author === currentUser && !importMode) {
+    if (annotations[0].Author === currentUser) {
       annotManager.exportAnnotCommand()
       .then(xfdfStringCmd => {  
           window.parent.postMessage({
@@ -37,7 +37,10 @@ window.addEventListener('documentLoaded', () => {
             }
             , '*'
           );
-      });
+      }).catch (err => {
+        console.log(err);
+        debugger;
+      });;
 
       annotManager.exportAnnotations({ links: false, widgets: false })
       .then(xfdfStringCmd => {  
@@ -48,7 +51,10 @@ window.addEventListener('documentLoaded', () => {
             }
             , '*'
           );
-      });      
+      }).catch (err => {
+        console.log(err);
+        debugger;
+      });;      
     }
 
 
