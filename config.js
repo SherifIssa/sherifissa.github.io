@@ -21,14 +21,17 @@ window.addEventListener('documentLoaded', () => {
   const annotManager = docViewer.getAnnotationManager();
   debugger;
 
-  annotManager.on("annotationChanged", (annotations, action) => {
-        window.parent.postMessage({
-            type: "ANNOTATION_CHANGED"
-          }
-          , '*'
-        );
-        debugger                                        
-      });
+  annotManager.exportAnnotCommand()
+  .then(xfdfStringCmd => {
+    annotManager.on("annotationChanged", (annotations, action) => {
+          window.parent.postMessage({
+              type: "ANNOTATION_CHANGED"
+            }
+            , '*'
+          );
+          debugger                                        
+        });
+  });
 
 
   const rectangle = new Annotations.RectangleAnnotation();
