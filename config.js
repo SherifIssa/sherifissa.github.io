@@ -25,7 +25,7 @@ window.addEventListener('documentLoaded', () => {
     if (!annotations || annotations.length == 0) return;
 
     const author = annotations[0].Author;
-    if (annotations[0].Author === currentUser)
+    if (annotations[0].Author === currentUser) {
       annotManager.exportAnnotCommand()
       .then(xfdfStringCmd => {  
           window.parent.postMessage({
@@ -35,7 +35,7 @@ window.addEventListener('documentLoaded', () => {
             }
             , '*'
           );
-        });
+      });
     }
   });
 
