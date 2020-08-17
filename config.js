@@ -30,34 +30,32 @@ window.addEventListener('documentLoaded', () => {
     if (annotations[0].Author === currentUser) {
       annotManager.exportAnnotCommand()
       .then(xfdfStringCmd => {  
-          window.parent.postMessage({
-              type: "PUBLISH_ANNOTATION",
-              author,
-              data: xfdfStringCmd
-            }
-            , '*'
-          );
+        window.parent.postMessage({
+            type: "PUBLISH_ANNOTATION",
+            author,
+            data: xfdfStringCmd
+          }
+          , '*'
+        );
       }).catch (err => {
         console.log(err);
         debugger;
       });;
 
       annotManager.exportAnnotations({ links: false, widgets: false })
-      .then(xfdfStringCmd => {  
-          window.parent.postMessage({
-              type: "SAVE_ANNOTATION",
-              author,
-              data: xfdfStringCmd
-            }
-            , '*'
-          );
+      .then(xfdfString => {  
+        window.parent.postMessage({
+            type: "SAVE_ANNOTATION",
+            author,
+            data: xfdfString
+          }
+          , '*'
+        );
       }).catch (err => {
         console.log(err);
         debugger;
       });;      
     }
-
-
   });
   
   setTimeout(() => {
