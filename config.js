@@ -47,7 +47,6 @@ function receiveMessage(event) {
       case 'OPEN_DOCUMENT':
         const { fileName, data, author } = JSON.parse(event.target.readerControl.getCustomData());
         currentUser = author;
-        const { annotations } = event.data;
         event.target.readerControl.loadDocument( base64ToBlob(data), { filename: fileName } );
         break;
       case 'LOAD_ANNOTATIONS':
