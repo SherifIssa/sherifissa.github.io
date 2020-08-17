@@ -1,5 +1,6 @@
 console.log("===>>>>>FROM CONFIG FILE...");
 
+let currentUser;
 
 function base64ToBlob(base64) {
   const binaryString = window.atob(base64);
@@ -18,6 +19,7 @@ window.addEventListener('viewerLoaded', function () {
 
 window.addEventListener('documentLoaded', () => {
   const annotManager = docViewer.getAnnotationManager();
+  annotManager.setCurrentUser(currentUser);
   annotManager.exportAnnotCommand()
   .then(xfdfStringCmd => {
     annotManager.on("annotationChanged", (annotations, action) => {
@@ -48,8 +50,11 @@ function receiveMessage(event) {
   if (event.isTrusted && typeof event.data === 'object') {
     switch (event.data.type) {
       case 'OPEN_DOCUMENT_URL':
-        const { fileName, data } = JSON.parse(event.target.readerControl.getCustomData());
+        const { fileName, data, author } = JSON.parse(event.target.readerControl.getCustomData());
+        currentUser = author;
         debugger;
+        console.log(">>>" + event.target.readerControl.annotManager);
+        
         event.target.readerControl.loadDocument( base64ToBlob(data), { filename: fileName } );
         break;
       case 'CLOSE_DOCUMENT':
