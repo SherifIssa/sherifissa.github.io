@@ -23,32 +23,31 @@ window.addEventListener('viewerLoaded', function () {
 window.addEventListener('documentLoaded', () => {
   annotManager = docViewer.getAnnotationManager();
   annotManager.setCurrentUser(currentUser);
-  docViewer.getAnnotationManager().importAnnotations(annotations)
-  .then(imported => {
+  annotManager.on("annotationChanged", (annotations, action) => {
+    if (!annotations || annotations.length === 0) return;
     debugger;
-    annotManager.on("annotationChanged", (annotations, action) => {
-      if (!annotations || annotations.length === 0) return;
-      debugger;
-      const author = annotations[0].Author;
-      if (annotations[0].Author === currentUser && !importMode) {
-        annotManager.exportAnnotCommand()
-        .then(xfdfStringCmd => {  
-            window.parent.postMessage({
-                type: "ANNOTATION_CHANGED",
-                author,
-                data: xfdfStringCmd
-              }
-              , '*'
-            );
-        });
-      }
-    });
-
-        
+    const author = annotations[0].Author;
+    if (annotations[0].Author === currentUser && !importMode) {
+      annotManager.exportAnnotCommand()
+      .then(xfdfStringCmd => {  
+          window.parent.postMessage({
+              type: "ANNOTATION_CHANGED",
+              author,
+              data: xfdfStringCmd
+            }
+            , '*'
+          );
+      });
+    }
+  });
+  
+  debugger;
+  annotManager.importAnnotations(annotations)
+  .then(imported => {
+    debugger;        
   }).catch (err => {
     console.log(err);
     debugger;
-
   });
 });
 
