@@ -59,7 +59,10 @@ function receiveMessage(event) {
         .then(imported => {
           debugger;
           importMode = false;          
-        });  
+        }).catch (err => {
+          console.log(err);
+          debugger;
+        });
         break;
       case 'CLOSE_DOCUMENT':
         event.target.readerControl.closeDocument();
