@@ -96,8 +96,10 @@ function receiveMessage(event) {
         annotManager.importAnnotCommand(event.data.annotations)
         .then(importedAnnotations => {
           readerControl.openElements([ 'notesPanel' ]);
+          /*
           readerControl.docViewer.refreshAll();
           annotManager.drawAnnotations(docViewer.getCurrentPage());
+          */
           importMode = false;        
         });
 
