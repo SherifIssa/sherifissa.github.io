@@ -69,8 +69,8 @@ window.addEventListener('documentLoaded', () => {
         debugger;
         readerControl.openElements([ 'notesPanel' ]);
         importMode = false;
-        //docViewer.refreshAll();
-        //annotManager.drawAnnotations(docViewer.getCurrentPage());        
+        docViewer.refreshAll();
+        annotManager.drawAnnotations(docViewer.getCurrentPage());        
       }).catch (err => {
         importMode = false;        
         console.log(err);
@@ -96,10 +96,8 @@ function receiveMessage(event) {
         annotManager.importAnnotCommand(event.data.annotations)
         .then(importedAnnotations => {
           readerControl.openElements([ 'notesPanel' ]);
-          /*
           readerControl.docViewer.refreshAll();
           annotManager.drawAnnotations(docViewer.getCurrentPage());
-          */
           importMode = false;        
         });
 
