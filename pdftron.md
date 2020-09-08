@@ -4,7 +4,7 @@ Pega Real-time Document Collaboration with PDFTron enables Pega users to view an
 - View a variety of [documents](https://www.pdftron.com/pdf-sdk/supported-file-formats/) inline inside Pega platform.
 - Collaborate on a variety of [documents](https://www.pdftron.com/pdf-sdk/supported-file-formats/) inside Pega platform: 
 -- Pega users can simultaneously add, edit and delete annotations to/from documents stored in Pega. The annotations are broadcasted to all online users in near real-time and persisted in [XFDF](https://www.iso.org/obp/ui/#iso:std:iso:19444:-1:ed-1:v1:en) format outside the original documents.
-- The component uses PDFTron [Client-side JavaScript](https://www.pdftron.com/documentation/web/guides/client-only-deployment/) configuration and supports on-premise or PegaCloud deployments.
+- The component uses PDFTron [Client-side JavaScript](https://www.pdftron.com/documentation/web/guides/client-only-deployment/) configuration and supports both on-premise and PegaCloud deployments.
 
 The components consists of `PegaRTC` and  `PDFTron` rulesets:
 - `PegaRTC` contains the implementation for:
